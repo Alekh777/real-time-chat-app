@@ -7,10 +7,18 @@
     <title>Socket.IO tutorial</title>
 </head>
 <body>
-    <input id="inpMsg">
-    <button id="btnSend">SEND</button>
+    <div id="loginBox">
+        <input id="inpUsername">
+        <button id="btnStart"> START </button>
+    </div>
+    <div id="chatBox">
+        <input id="inpToUser" placeholder="Send To (default everyone)">
+        <input id="inpNewMsg" placeholder="New Message">
+        <button id="btnSendMsg">SEND</button>
+        <ul id="ulMsgs"></ul>
+    </div>
 
-    <ul id="ulMsgList"></ul>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./script.js"></script>
 </body>
