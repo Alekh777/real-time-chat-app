@@ -22,8 +22,16 @@ io.on('connection', (socket)=>{
     // })
 
     socket.on('login', (data)=>{
-        socket.join(data.username); // join "data.username" Room.
+        socket.join(data.username); // join the current socket to "data.username" Room.
         socket.emit('logged_in')
+    })
+
+    socket.on('msg_send', (data)=>{
+        if(data.to){
+            io.to(data.to).emit('msg_rcvd', data) // emit message to sockets in "data.to" Room
+        } else {
+            socket.broadcast.emit('msg_rcvd', data)
+        }
     })
 })
 
