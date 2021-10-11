@@ -6,6 +6,10 @@ const socketio = require('socket.io');
 const server = http.createServer(app)
 const io = socketio(server)
 
+let users = {
+    'alekh': 'alekh123'
+}
+
 io.on('connection', (socket)=>{
     console.log('connected with socket id = ', socket.id);
 
@@ -22,8 +26,18 @@ io.on('connection', (socket)=>{
     // })
 
     socket.on('login', (data)=>{
-        socket.join(data.username); // join the current socket to "data.username" Room.
-        socket.emit('logged_in')
+        if(users[data.username]){ // if exists
+            if(users[data.username] == data.password){
+                socket.join(data.username); // join the current socket to "data.username" Room.
+                socket.emit('logged_in')
+            } else {
+                socket.emit('login_failed')
+            }
+        } else {
+            users[data.username] = data.password;
+            socket.join(data.username); // join the current socket to "data.username" Room.
+            socket.emit('logged_in')
+        }
     })
 
     socket.on('msg_send', (data)=>{
