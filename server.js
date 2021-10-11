@@ -10,6 +10,8 @@ let users = {
     'alekh': 'alekh123'
 }
 
+let socketMap = {};
+
 io.on('connection', (socket)=>{
     console.log('connected with socket id = ', socket.id);
 
@@ -25,24 +27,33 @@ io.on('connection', (socket)=>{
     //                                // 3. socket.broadcast.emit -> emits to every socket except the current one.
     // })
 
+    // socket.join(data.username); // join the current socket to "data.username" Room.
+    // io.to(data.to).emit('msg_rcvd', data) // emit message to all sockets in "data.to" Room
+
+    function login(s, u){
+        s.join(u); // join the current socket to "u" Room.
+        socket.emit('logged_in')
+        socketMap[s.id] = u
+        console.log(socketMap)
+    }
+
     socket.on('login', (data)=>{
         if(users[data.username]){ // if exists
             if(users[data.username] == data.password){
-                socket.join(data.username); // join the current socket to "data.username" Room.
-                socket.emit('logged_in')
+                login(socket, data.username)
             } else {
                 socket.emit('login_failed')
             }
         } else {
             users[data.username] = data.password;
-            socket.join(data.username); // join the current socket to "data.username" Room.
-            socket.emit('logged_in')
+            login(socket, data.username);
         }
     })
 
     socket.on('msg_send', (data)=>{
+        data.from = socketMap[socket.id]
         if(data.to){
-            io.to(data.to).emit('msg_rcvd', data) // emit message to sockets in "data.to" Room
+            io.to(data.to).emit('msg_rcvd', data) // emit message to all sockets in "data.to" Room
         } else {
             socket.broadcast.emit('msg_rcvd', data)
         }
