@@ -2,7 +2,7 @@ const http = require('http')
 const express = require('express')
 const app = express();
 const socketio = require('socket.io');
-
+const SERVER_PORT = process.env.PORT || 2342;
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -62,6 +62,6 @@ io.on('connection', (socket)=>{
 
 app.use('/', express.static(__dirname + '/public'))
 
-server.listen(80, ()=>{
-    console.log('Listening at http://localhost:80/')
+server.listen(SERVER_PORT, ()=>{
+    console.log(`Listening at http://localhost:/${SERVER_PORT}`)
 })
