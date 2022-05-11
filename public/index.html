@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.IO tutorial</title>
+    <title>Real Time Chat App</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="loginBox">
-        <input id="inpUsername" placeholder="Username">
-        <input id="inpPassword" type="password" placeholder="Password">
-        <button id="btnStart"> START </button>
-    </div>
-    <div id="chatBox">
-        <input id="inpToUser" placeholder="Send To (default everyone)">
-        <input id="inpNewMsg" placeholder="New Message">
-        <button id="btnSendMsg">SEND</button>
-        <ul id="ulMsgs"></ul>
+    <div>
+        <div id="loginBox" class="box">
+            <input id="inpUsername" placeholder="Username">
+            <input id="inpPassword" type="password" placeholder="Password">
+            <button id="btnStart"> START </button>
+        </div>
+        <div id="chatBox" class="box">
+            <input id="inpToUser" placeholder="Send To (default everyone)">
+            <input id="inpNewMsg" placeholder="New Message">
+            <button id="btnSendMsg">SEND</button>
+            <ul id="ulMsgs"></ul>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

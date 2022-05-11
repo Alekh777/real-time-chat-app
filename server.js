@@ -55,7 +55,7 @@ io.on('connection', (socket)=>{
         if(data.to){
             io.to(data.to).emit('msg_rcvd', data) // emit message to all sockets in "data.to" Room
         } else {
-            socket.broadcast.emit('msg_rcvd', data)
+            socket.emit('msg_rcvd', data)
         }
     })
 })
@@ -63,5 +63,5 @@ io.on('connection', (socket)=>{
 app.use('/', express.static(__dirname + '/public'))
 
 server.listen(SERVER_PORT, ()=>{
-    console.log(`Listening at http://localhost:/${SERVER_PORT}`)
+    console.log(`Listening at http://localhost:${SERVER_PORT}`)
 })

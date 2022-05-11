@@ -1,0 +1,58 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+button {
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: ease-in-out 0.2s;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: darkgray;
+    color: white;
+}
+
+ul {
+    padding: 0;
+}
+
+ul > li {
+    margin: 10px;
+    list-style-type: none;
+    font-size: 20px;
+}
